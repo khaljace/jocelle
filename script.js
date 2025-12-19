@@ -1,3 +1,28 @@
+// ===== BACKGROUND MUSIC FIX =====
+const bgMusic = document.getElementById("bgMusic");
+let musicStarted = false;
+
+function startMusic() {
+  if (!musicStarted) {
+    bgMusic.volume = 0;
+    bgMusic.play().then(() => {
+      // Smooth fade-in
+      let vol = 0;
+      const fade = setInterval(() => {
+        vol += 0.05;
+        bgMusic.volume = Math.min(vol, 0.6);
+        if (vol >= 0.6) clearInterval(fade);
+      }, 100);
+    });
+    musicStarted = true;
+  }
+}
+
+// Start music on ANY user interaction
+document.addEventListener("click", startMusic, { once: true });
+document.addEventListener("touchstart", startMusic, { once: true });
+
+
 // ===== BASIC CHECK =====
 console.log("Script loaded");
 
@@ -75,3 +100,4 @@ function createHeart() {
 }
 
 setInterval(createHeart, 600);
+
