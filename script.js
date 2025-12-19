@@ -1,6 +1,6 @@
 console.log("Script loaded");
 
-// SLIDER
+// ===== SLIDER =====
 const slider = document.querySelector(".slider");
 const pages = document.querySelectorAll(".page");
 let currentPage = 0;
@@ -24,20 +24,20 @@ document.querySelector(".nav.right").onclick = () => {
   }
 };
 
-// TYPEWRITER
-function typeWriter(el, speed = 30) {
+// ===== TYPEWRITER =====
+function typeWriter(el, speed = 28) {
   const text = el.textContent;
   el.textContent = "";
   let i = 0;
 
-  function type() {
+  function typing() {
     if (i < text.length) {
       el.textContent += text.charAt(i);
       i++;
-      setTimeout(type, speed);
+      setTimeout(typing, speed);
     }
   }
-  type();
+  typing();
 }
 
 function runTypewriter(index) {
@@ -50,17 +50,20 @@ function runTypewriter(index) {
   });
 }
 
+// First page typing
 runTypewriter(0);
 
-// MODALS
+// ===== MODALS =====
 const yesModal = document.getElementById("yesModal");
 const talkModal = document.getElementById("talkModal");
 
-document.getElementById("yesBtn").onclick = () =>
+document.getElementById("yesBtn").onclick = () => {
   yesModal.classList.remove("hidden");
+};
 
-document.getElementById("talkBtn").onclick = () =>
+document.getElementById("talkBtn").onclick = () => {
   talkModal.classList.remove("hidden");
+};
 
 document.querySelectorAll(".close").forEach(btn => {
   btn.onclick = () => {
@@ -69,12 +72,12 @@ document.querySelectorAll(".close").forEach(btn => {
   };
 });
 
-// MUSIC
+// ===== MUSIC =====
 const bgMusic = document.getElementById("bgMusic");
-let started = false;
+let musicStarted = false;
 
-document.addEventListener("click", () => {
-  if (!started) {
+function startMusic() {
+  if (!musicStarted) {
     bgMusic.volume = 0;
     bgMusic.play();
     let v = 0;
@@ -83,18 +86,22 @@ document.addEventListener("click", () => {
       bgMusic.volume = Math.min(v, 0.6);
       if (v >= 0.6) clearInterval(fade);
     }, 100);
-    started = true;
+    musicStarted = true;
   }
-}, { once: true });
+}
 
-// HEARTS
+document.addEventListener("click", startMusic, { once: true });
+
+// ===== FLOATING HEARTS =====
 const hearts = document.querySelector(".hearts");
 
 setInterval(() => {
-  const h = document.createElement("span");
-  h.textContent = "💙";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = 14 + Math.random() * 20 + "px";
-  hearts.appendChild(h);
-  setTimeout(() => h.remove(), 12000);
+  const heart = document.createElement("span");
+  heart.textContent = "💙";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 14 + Math.random() * 20 + "px";
+  heart.style.animationDuration = 6 + Math.random() * 6 + "s";
+  hearts.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 12000);
 }, 700);
