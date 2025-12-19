@@ -14,12 +14,17 @@ body {
 }
 
 .page {
-  min-width: 100vw;
-  padding: 80px 20px;
+  width: 100vw;
+  height: 100svh; /* SAFE VIEWPORT HEIGHT FOR PHONES */
+
+  padding: 60px 16px 40px;
   box-sizing: border-box;
   text-align: center;
+
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 .page::-webkit-scrollbar {
   width: 6px;
@@ -131,13 +136,19 @@ button {
 /* MODAL BOX */
 .modal-box {
   background: white;
-  max-width: 600px;
-  width: 90%;
-  padding: 50px 30px;
-  border-radius: 20px;
+  width: 92%;
+  max-width: 360px;
+  max-height: 85svh;
+
+  padding: 24px 18px;
+  border-radius: 18px;
   position: relative;
   text-align: center;
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 /* CLOSE BUTTON */
 .close {
@@ -160,5 +171,38 @@ button {
 }
 .modal.hidden {
   display: none !important;
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    font-size: 0.95rem;
+    margin: 24px auto;
+  }
+
+  button {
+    width: 100%;
+    max-width: 280px;
+    margin: 10px auto;
+    display: block;
+  }
+
+  .nav {
+    font-size: 1.6rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left { left: 6px; }
+  .right { right: 6px; }
 }
 
