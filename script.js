@@ -1,3 +1,4 @@
+console.log("Script loaded");
 
 // SLIDER
 const slider = document.querySelector(".slider");
@@ -6,6 +7,7 @@ let currentPage = 0;
 
 function updateSlider() {
   slider.style.transform = `translateX(-${currentPage * 100}vw)`;
+  runTypewriter(currentPage);
 }
 
 document.querySelector(".nav.left").onclick = () => {
@@ -22,14 +24,43 @@ document.querySelector(".nav.right").onclick = () => {
   }
 };
 
+// TYPEWRITER
+function typeWriter(el, speed = 30) {
+  const text = el.textContent;
+  el.textContent = "";
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+function runTypewriter(index) {
+  const elements = pages[index].querySelectorAll(".typewriter");
+  elements.forEach(el => {
+    if (!el.dataset.typed) {
+      el.dataset.typed = "true";
+      typeWriter(el);
+    }
+  });
+}
+
+runTypewriter(0);
+
 // MODALS
-const yesBtn = document.getElementById("yesBtn");
-const talkBtn = document.getElementById("talkBtn");
 const yesModal = document.getElementById("yesModal");
 const talkModal = document.getElementById("talkModal");
 
-yesBtn.onclick = () => yesModal.classList.remove("hidden");
-talkBtn.onclick = () => talkModal.classList.remove("hidden");
+document.getElementById("yesBtn").onclick = () =>
+  yesModal.classList.remove("hidden");
+
+document.getElementById("talkBtn").onclick = () =>
+  talkModal.classList.remove("hidden");
 
 document.querySelectorAll(".close").forEach(btn => {
   btn.onclick = () => {
@@ -40,10 +71,10 @@ document.querySelectorAll(".close").forEach(btn => {
 
 // MUSIC
 const bgMusic = document.getElementById("bgMusic");
-let musicStarted = false;
+let started = false;
 
-function startMusic() {
-  if (!musicStarted) {
+document.addEventListener("click", () => {
+  if (!started) {
     bgMusic.volume = 0;
     bgMusic.play();
     let v = 0;
@@ -52,22 +83,18 @@ function startMusic() {
       bgMusic.volume = Math.min(v, 0.6);
       if (v >= 0.6) clearInterval(fade);
     }, 100);
-    musicStarted = true;
+    started = true;
   }
-}
-
-document.addEventListener("click", startMusic, { once: true });
+}, { once: true });
 
 // HEARTS
 const hearts = document.querySelector(".hearts");
 
 setInterval(() => {
-  const heart = document.createElement("span");
-  heart.textContent = "💙";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = 14 + Math.random() * 20 + "px";
-  heart.style.animationDuration = 6 + Math.random() * 6 + "s";
-  hearts.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 12000);
-}, 600);
+  const h = document.createElement("span");
+  h.textContent = "💙";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = 14 + Math.random() * 20 + "px";
+  hearts.appendChild(h);
+  setTimeout(() => h.remove(), 12000);
+}, 700);
