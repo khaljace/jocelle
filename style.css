@@ -1,26 +1,34 @@
+/* BASE */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background: #eaf6ff;
-  overflow: hidden;
   color: #1f3b57;
+
+  overflow-x: hidden; /* FIX HORIZONTAL SCROLL ON MOBILE */
 }
 
-/* Slider */
+/* SLIDER */
 .slider {
   display: flex;
+  width: 100vw;
   height: 100vh;
   transition: transform 0.6s ease;
 }
 
 .page {
-  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+
   padding: 80px 20px;
   box-sizing: border-box;
   text-align: center;
-  overflow-y: auto;
+
+  overflow-y: auto; /* SCROLLABLE ON PHONE */
+  -webkit-overflow-scrolling: touch;
 }
 
+/* SCROLLBAR */
 .page::-webkit-scrollbar {
   width: 6px;
 }
@@ -30,41 +38,53 @@ body {
   border-radius: 10px;
 }
 
-/* Typography */
+/* TYPOGRAPHY */
 h1, h2 {
   font-family: 'Playfair Display', serif;
 }
 
-/* Content */
+/* CONTENT */
 .content {
   max-width: 600px;
   margin: 40px auto;
   line-height: 1.8;
 }
 
-/* Navigation */
+/* NAVIGATION ARROWS */
 .nav {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.6);
+
+  background: rgba(255,255,255,0.7);
   border: none;
   font-size: 2rem;
-  padding: 10px 20px;
+  padding: 12px 16px;
+
   cursor: pointer;
   border-radius: 50%;
+  z-index: 10;
+
+  touch-action: manipulation;
 }
 
-.left { left: 20px; }
-.right { right: 20px; }
+.left { left: 12px; }
+.right { right: 12px; }
 
-/* Buttons */
+/* BUTTONS (PHONE FRIENDLY) */
 button {
-  padding: 12px 28px;
-  margin: 10px;
+  padding: 14px 28px;
+  margin: 12px;
   border-radius: 30px;
   border: none;
   cursor: pointer;
+
+  font-size: 16px;
+  touch-action: manipulation;
+}
+
+button:active {
+  transform: scale(0.96);
 }
 
 #yesBtn {
@@ -78,7 +98,7 @@ button {
   color: #8fc9ff;
 }
 
-/* Typewriter */
+/* TYPEWRITER */
 .typewriter::after {
   content: '|';
   animation: blink 1s infinite;
@@ -88,11 +108,19 @@ button {
   50% { opacity: 0; }
 }
 
+/* HIDDEN */
 .hidden {
   display: none;
 }
 
-/* Floating Hearts */
+/* FLOATING HEARTS */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* IMPORTANT FOR BUTTON CLICKS */
+  z-index: 0;
+}
+
 .hearts span {
   position: absolute;
   bottom: -10px;
@@ -111,50 +139,63 @@ button {
     opacity: 0;
   }
 }
+
+/* SOFT NOTE */
 .soft-note {
   margin-top: 30px;
   font-style: italic;
   opacity: 0.75;
 }
+
 /* MODAL OVERLAY */
 .modal {
   position: fixed;
   inset: 0;
   background: rgba(234, 246, 255, 0.85);
   backdrop-filter: blur(6px);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 999;
 }
 
-/* MODAL BOX */
+/* MODAL BOX (PHONE SAFE) */
 .modal-box {
   background: white;
-  max-width: 600px;
   width: 90%;
-  padding: 50px 30px;
+  max-width: 420px;
+  max-height: 80vh;
+
+  padding: 30px 20px;
   border-radius: 20px;
   position: relative;
   text-align: center;
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* CLOSE BUTTON */
 .close {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 12px;
+  right: 16px;
   font-size: 1.8rem;
+
   border: none;
   background: none;
   cursor: pointer;
   color: #1f3b57;
 }
 
-/* Hide helper */
-.hidden {
-  display: none;
-}
-.hearts {
-  pointer-events: none;
+/* SMALL SCREENS */
+@media (max-width: 480px) {
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+
+  .content {
+    font-size: 0.95rem;
+  }
 }
