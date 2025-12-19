@@ -65,7 +65,7 @@ button {
   color: #8fc9ff;
 }
 
-/* NAV */
+/* NAVIGATION */
 .nav {
   position: fixed;
   top: 50%;
@@ -93,7 +93,7 @@ button {
   50% { opacity: 0; }
 }
 
-/* HEARTS */
+/* FLOATING HEARTS */
 .hearts {
   position: fixed;
   inset: 0;
@@ -112,7 +112,7 @@ button {
   to { transform: translateY(-120vh); opacity: 0; }
 }
 
-/* MODAL */
+/* MODALS */
 .modal {
   position: fixed;
   inset: 0;
@@ -133,7 +133,7 @@ button {
   text-align: center;
 }
 
-/* CLOSE BUTTON FIX */
+/* CLOSE BUTTON */
 .close {
   position: absolute;
   top: 15px;
@@ -145,6 +145,7 @@ button {
   z-index: 1000;
 }
 
+/* HELPERS */
 .hidden {
   display: none;
 }
