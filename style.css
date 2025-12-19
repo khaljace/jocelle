@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -6,6 +10,7 @@ body {
   color: #1f3b57;
 }
 
+/* SLIDER */
 .slider {
   display: flex;
   height: 100vh;
@@ -16,13 +21,15 @@ body {
 
 .page {
   min-width: 100vw;
+  height: 100vh;
   padding: 80px 20px;
   text-align: center;
-  overflow-y: auto;
+  overflow: hidden;
   position: relative;
   z-index: 2;
 }
 
+/* TEXT */
 h1, h2 {
   font-family: 'Playfair Display', serif;
 }
@@ -32,6 +39,11 @@ h1, h2 {
   margin: 40px auto;
   line-height: 1.8;
   white-space: pre-line;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 30px;
 }
 
 button {
@@ -53,12 +65,7 @@ button {
   color: #8fc9ff;
 }
 
-.page button {
-  position: relative;
-  z-index: 5;
-  pointer-events: auto;
-}
-
+/* NAV */
 .nav {
   position: fixed;
   top: 50%;
@@ -74,9 +81,11 @@ button {
 .left { left: 20px; }
 .right { right: 20px; }
 
+/* TYPEWRITER CURSOR */
 .typewriter::after {
   content: '|';
   animation: blink 1s infinite;
+  margin-left: 2px;
   pointer-events: none;
 }
 
@@ -84,6 +93,7 @@ button {
   50% { opacity: 0; }
 }
 
+/* HEARTS */
 .hearts {
   position: fixed;
   inset: 0;
@@ -102,6 +112,7 @@ button {
   to { transform: translateY(-120vh); opacity: 0; }
 }
 
+/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
@@ -122,20 +133,16 @@ button {
   text-align: center;
 }
 
+/* CLOSE BUTTON FIX */
 .close {
   position: absolute;
   top: 15px;
   right: 20px;
+  font-size: 1.6rem;
   background: none;
   border: none;
-  font-size: 1.8rem;
   cursor: pointer;
-}
-
-.soft-note {
-  margin-top: 30px;
-  font-style: italic;
-  opacity: 0.75;
+  z-index: 1000;
 }
 
 .hidden {
